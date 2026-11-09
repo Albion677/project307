@@ -1,15 +1,154 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vorschau 307 </title>
-        <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sponsoring</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Vorschau 307</h1>
-    <p>Dies ist eine Vorschau</p>
-    <p>Dies ist eine Vorschau</p>
-        <script src="script.js"></script>
+
+  <nav>
+    <span class="logo">⚽ FC Beispiel</span>
+    <ul>
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#pakete">Pakete</a></li>
+      <li><a href="#sponsoren">Sponsoren</a></li>
+      <li><a href="#anfrage">Anfrage</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Sponsoring</h1>
+    <p>Werde Teil unseres Teams – unterstütze uns als Sponsor!</p>
+    <a class="cta" href="#anfrage">Jetzt Sponsor werden</a>
+  </header>
+
+  <main>
+    <section id="ueber-uns">
+      <h2>Über uns</h2>
+      <p>Wir sind ein kleiner Sportverein mit vielen motivierten Spielerinnen und Spielern.
+         Mit Ihrem Sponsoring unterstützen Sie neue Trikots, Bälle und Turniere.</p>
+
+      <div class="fakten">
+        <div class="fakt"><strong>120</strong><span>Mitglieder</span></div>
+        <div class="fakt"><strong>8</strong><span>Teams</span></div>
+        <div class="fakt"><strong>25</strong><span>Jahre Verein</span></div>
+        <div class="fakt"><strong>15</strong><span>Sponsoren</span></div>
+      </div>
+    </section>
+
+    <section id="pakete">
+      <h2>Sponsoring-Pakete</h2>
+      <div class="pakete">
+        <div class="paket bronze">
+          <h3>Bronze</h3>
+          <p class="preis">200 CHF</p>
+          <ul>
+            <li>Logo auf der Website</li>
+            <li>Dank auf Social Media</li>
+          </ul>
+        </div>
+        <div class="paket silber">
+          <h3>Silber</h3>
+          <p class="preis">500 CHF</p>
+          <ul>
+            <li>Alles aus Bronze</li>
+            <li>Banner am Spielfeld</li>
+          </ul>
+        </div>
+        <div class="paket gold">
+          <span class="badge">Beliebt</span>
+          <h3>Gold</h3>
+          <p class="preis">1000 CHF</p>
+          <ul>
+            <li>Alles aus Silber</li>
+            <li>Logo auf dem Trikot</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sponsoren">
+      <h2>Unsere Sponsoren</h2>
+      <div class="sponsoren">
+        <div class="sponsor">Bäckerei Huber</div>
+        <div class="sponsor">Auto Meier</div>
+        <div class="sponsor">Pizzeria Roma</div>
+        <div class="sponsor">Sport Shop</div>
+      </div>
+    </section>
+
+    <section id="anfrage">
+      <h2>Sponsoring Anfrage</h2>
+      <p class="hinweis">Felder mit * sind Pflichtfelder.</p>
+
+      <!-- Bereich für Erfolgs- und Fehlermeldungen -->
+      <div id="meldung" class="meldung" hidden></div>
+
+      <form action="speichern.php" method="post">
+        <label for="firmenname">Firmenname *</label>
+        <input type="text" id="firmenname" name="firmenname" required>
+
+        <label for="ansprechperson">Ansprechperson *</label>
+        <input type="text" id="ansprechperson" name="ansprechperson" required>
+
+        <label for="email">E-Mail *</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="branche">Branche *</label>
+        <select id="branche" name="branche" required>
+          <option value="">– bitte wählen –</option>
+          <option value="gastro">Gastronomie</option>
+          <option value="handel">Handel</option>
+          <option value="handwerk">Handwerk</option>
+          <option value="it">IT</option>
+          <option value="andere">Andere</option>
+        </select>
+
+        <label for="nachricht">Nachricht</label>
+        <textarea id="nachricht" name="nachricht" rows="4"></textarea>
+
+        <label for="betrag">Betrag (CHF)</label>
+        <input type="number" id="betrag" name="betrag" min="1">
+
+        <label class="check">
+          <input type="checkbox" id="datenschutz" name="datenschutz" required>
+          Datenschutz akzeptieren *
+        </label>
+
+        <button type="submit">Absenden</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>FC Beispiel</strong> · Sportplatzweg 1 · 9000 St. Gallen</p>
+    <p>info@fc-beispiel.ch · 071 123 45 67</p>
+    <p class="klein">© 2026 FC Beispiel · <a href="#" id="cookie-oeffnen">Cookie-Einstellungen</a></p>
+  </footer>
+
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" hidden>
+    <div class="cookie-box">
+      <h3>🍪 Wir verwenden Cookies</h3>
+      <p>Wir nutzen Cookies, damit die Website gut funktioniert und wir sie verbessern können.
+         Sie können selbst wählen, welche Cookies Sie erlauben.</p>
+
+      <div id="cookie-einstellungen" class="cookie-einstellungen" hidden>
+        <label class="check"><input type="checkbox" checked disabled> Notwendige Cookies (immer aktiv)</label>
+        <label class="check"><input type="checkbox" id="cookie-statistik"> Statistik</label>
+        <label class="check"><input type="checkbox" id="cookie-marketing"> Marketing</label>
+      </div>
+
+      <div class="cookie-buttons">
+        <button type="button" id="cookie-einstellungen-btn" class="btn-hell">Einstellungen</button>
+        <button type="button" id="cookie-ablehnen" class="btn-hell">Ablehnen</button>
+        <button type="button" id="cookie-akzeptieren">Alle akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sponsoring</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f4f3;
+      color: #222;
+    }
+
+    header, main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    h1 {
+      display: inline-block;
+      border: 2px solid #1b7a3e;
+      border-radius: 8px;
+      padding: 8px 20px;
+      color: #1b7a3e;
+    }
+
+    section {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    h2 { color: #1b7a3e; margin-top: 0; }
+    .hinweis { font-size: 0.9rem; color: #666; }
+
+    label { display: block; margin-top: 12px; font-weight: bold; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 4px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .check { font-weight: normal; }
+    .check input { width: auto; }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #1b7a3e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    button:hover { background: #145c2e; }
+
+    .meldung { padding: 10px; border-radius: 6px; }
+    .erfolg  { background: #d4edda; color: #155724; }
+    .fehler  { background: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sponsoring</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Über uns</h2>
+      <p>Wir sind ein kleiner Sportverein mit vielen motivierten Spielerinnen und Spielern.
+         Mit Ihrem Sponsoring unterstützen Sie neue Trikots, Bälle und Turniere.</p>
+    </section>
+
+    <section>
+      <h2>Sponsoring Anfrage</h2>
+      <p class="hinweis">Felder mit * sind Pflichtfelder.</p>
+
+      <!-- Bereich für Erfolgs- und Fehlermeldungen -->
+      <div id="meldung" class="meldung" hidden></div>
+
+      <form action="speichern.php" method="post">
+        <label for="firmenname">Firmenname *</label>
+        <input type="text" id="firmenname" name="firmenname" required>
+
+        <label for="ansprechperson">Ansprechperson *</label>
+        <input type="text" id="ansprechperson" name="ansprechperson" required>
+
+        <label for="email">E-Mail *</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="branche">Branche *</label>
+        <select id="branche" name="branche" required>
+          <option value="">– bitte wählen –</option>
+          <option value="gastro">Gastronomie</option>
+          <option value="handel">Handel</option>
+          <option value="handwerk">Handwerk</option>
+          <option value="it">IT</option>
+          <option value="andere">Andere</option>
+        </select>
+
+        <label for="nachricht">Nachricht</label>
+        <textarea id="nachricht" name="nachricht" rows="4"></textarea>
+
+        <label for="betrag">Betrag (CHF)</label>
+        <input type="number" id="betrag" name="betrag" min="1">
+
+        <label class="check">
+          <input type="checkbox" id="datenschutz" name="datenschutz" required>
+          Datenschutz akzeptieren *
+        </label>
+
+        <button type="submit">Absenden</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Meldung anzeigen: index.html?status=ok oder ?status=fehler
+    const status = new URLSearchParams(location.search).get("status");
+    const meldung = document.getElementById("meldung");
+    if (status === "ok") {
+      meldung.textContent = "Danke! Ihre Anfrage wurde gesendet.";
+      meldung.className = "meldung erfolg";
+      meldung.hidden = false;
+    } else if (status === "fehler") {
+      meldung.textContent = "Fehler: Bitte alle Pflichtfelder ausfüllen.";
+      meldung.className = "meldung fehler";
+      meldung.hidden = false;
+    }
+  </script>
+</body>
+</html>

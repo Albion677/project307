@@ -1,3 +1,464 @@
-* {
-    background-color: #322332;
+/* ===== Farben ===== */
+:root {
+  --gruen: #1b7a3e;
+  --gruen-dunkel: #125c2c;
+  --gruen-hell: #e6f4ea;
+  --text: #222;
+  --grau: #6b6b6b;
+  --hintergrund: #eef2ef;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--hintergrund);
+  color: var(--text);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ===== Navigation ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 24px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--gruen);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav a:hover {
+  color: var(--gruen);
+  border-color: var(--gruen);
+}
+
+/* ===== Header-Banner ===== */
+header {
+  background: linear-gradient(135deg, var(--gruen), var(--gruen-dunkel));
+  color: white;
+  text-align: center;
+  padding: 50px 20px 70px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+header p {
+  margin: 8px 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: white;
+  color: var(--gruen);
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.cta:hover { transform: scale(1.05); }
+
+/* ===== Inhalt ===== */
+main {
+  max-width: 850px;
+  margin: -40px auto 40px;   /* Karten ragen ins Banner hinein */
+  padding: 0 16px;
+}
+
+section {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--gruen);
+  border-left: 5px solid var(--gruen);
+  padding-left: 12px;
+}
+
+.hinweis {
+  font-size: 0.9rem;
+  color: var(--grau);
+}
+
+/* ===== Zahlen & Fakten ===== */
+.fakten {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.fakt {
+  background: var(--gruen-hell);
+  border-radius: 10px;
+  padding: 16px 8px;
+  text-align: center;
+}
+
+.fakt strong {
+  display: block;
+  font-size: 2rem;
+  color: var(--gruen);
+}
+
+.fakt span {
+  font-size: 0.9rem;
+  color: var(--grau);
+}
+
+/* ===== Sponsoring-Pakete ===== */
+.pakete {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.paket {
+  position: relative;
+  border: 2px solid #e0e6e2;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  border-top-width: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.paket { cursor: pointer; }
+
+.paket:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.paket h3 { margin: 0; font-size: 1.4rem; }
+
+.preis {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--gruen);
+  margin: 8px 0;
+}
+
+.paket ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--grau);
+}
+
+.paket li::before {
+  content: "✓ ";
+  color: var(--gruen);
+  font-weight: bold;
+}
+
+.bronze { border-top-color: #cd7f32; }
+.silber { border-top-color: #b0b0b0; }
+.gold   { border-top-color: #e6b800; background: #fffbea; }
+
+.badge {
+  position: absolute;
+  top: -14px;
+  right: 14px;
+  background: #e6b800;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ===== Sponsoren ===== */
+.sponsoren {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.sponsor {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px dashed #c8d3cc;
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--grau);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.sponsor:hover {
+  border-color: var(--gruen);
+  color: var(--gruen);
+}
+
+/* ===== Formular ===== */
+label {
+  display: block;
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 2px solid #d5dbd7;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fafcfb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #a9c7b3;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--gruen);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(27, 122, 62, 0.15);
+}
+
+/* Ungültige Pflichtfelder rot markieren (erst nachdem man etwas eingegeben hat) */
+input:user-invalid,
+select:user-invalid {
+  border-color: #c0392b;
+}
+
+textarea { resize: vertical; }
+
+/* Checkbox Datenschutz */
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: normal;
+  background: var(--gruen-hell);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.check input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--gruen);
+}
+
+/* ===== Button ===== */
+button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: var(--gruen);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(27, 122, 62, 0.3);
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--gruen-dunkel);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== Erfolgs- und Fehlermeldungen ===== */
+.meldung {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.erfolg {
+  background: #d4edda;
+  color: #155724;
+  border-left: 5px solid #28a745;
+}
+
+.fehler {
+  background: #f8d7da;
+  color: #721c24;
+  border-left: 5px solid #c0392b;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #1f2a24;
+  color: #cfd8d2;
+  text-align: center;
+  padding: 30px 16px;
+}
+
+footer p { margin: 4px 0; }
+footer .klein { font-size: 0.8rem; opacity: 0.7; margin-top: 12px; }
+
+/* ===== Handy-Ansicht ===== */
+@media (max-width: 600px) {
+  header {
+    padding: 35px 16px 60px;
+  }
+
+  header h1 {
+    font-size: 1.9rem;
+  }
+
+  section {
+    padding: 18px;
+  }
+
+  nav { justify-content: center; padding: 10px; }
+  nav ul { gap: 12px; font-size: 0.9rem; }
+
+  .fakten,
+  .sponsoren { grid-template-columns: repeat(2, 1fr); }
+
+  .pakete { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* ===== Cookie-Banner ===== */
+.cookie-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.45);   /* Seite dahinter abdunkeln */
+  animation: einblenden 0.4s ease;
+}
+
+.cookie-banner[hidden] { display: none; }
+
+.cookie-box {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: hochfahren 0.4s ease;
+}
+
+.cookie-box h3 { margin: 0 0 8px; color: var(--gruen); }
+.cookie-box p  { margin: 0; color: var(--grau); }
+
+.cookie-einstellungen {
+  margin-top: 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.cookie-einstellungen .check { margin-top: 0; }
+
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cookie-buttons button {
+  flex: 1;
+  margin-top: 0;
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.btn-hell {
+  background: white;
+  color: var(--gruen);
+  border: 2px solid var(--gruen);
+  box-shadow: none;
+}
+
+.btn-hell:hover {
+  background: var(--gruen-hell);
+}
+
+footer a { color: #cfd8d2; }
+
+@keyframes einblenden {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hochfahren {
+  from { transform: translateY(40px); }
+  to   { transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .cookie-buttons { flex-direction: column; }
 }

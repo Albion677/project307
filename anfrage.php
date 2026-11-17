@@ -24,10 +24,18 @@ $firmenname     = trim($_POST["firmenname"] ?? "");
 $ansprechperson = trim($_POST["ansprechperson"] ?? "");
 $email          = trim($_POST["email"] ?? "");
 $branche        = trim($_POST["branche"] ?? "");
-$paket          = trim($_POST["paket"] ?? "");
+$paketId        = trim($_POST["paket_id"] ?? "");
 $nachricht      = trim($_POST["nachricht"] ?? "");
 $betrag         = trim($_POST["betrag"] ?? "");
 $datenschutz    = isset($_POST["datenschutz"]) ? 1 : 0;
+
+// Verbindung schon hier, weil wir für das Paket in der DB nachschauen
+try {
+    $pdo = verbindeDatenbank();
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+    antwort(500, ["ok" => false, "meldung" => "Serverfehler: Keine Verbindung zur Datenbank."]);
+}
 
 // ----- 2. Serverseitig prüfen (dem Browser nie blind vertrauen) -----
 $fehler = [];
@@ -45,8 +53,18 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 if (!in_array($branche, $erlaubteBranchen, true)) {
     $fehler["branche"] = "Bitte eine Branche auswählen.";
 }
-if (!in_array($paket, ["", "junioren", "bande", "trikot"], true)) {
-    $fehler["paket"] = "Bitte ein gültiges Paket wählen.";
+// Paket ist freiwillig. Wenn eins gewählt ist, muss die id in der Tabelle pakete existieren.
+if ($paketId !== "") {
+    $paketId = filter_var($paketId, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]]);
+    $gefunden = 0;
+    if ($paketId !== false) {
+        $abfrage = $pdo->prepare("SELECT COUNT(*) FROM pakete WHERE id = :id");
+        $abfrage->execute([":id" => $paketId]);
+        $gefunden = (int) $abfrage->fetchColumn();
+    }
+    if ($gefunden === 0) {
+        $fehler["paket_id"] = "Bitte ein gültiges Paket wählen.";
+    }
 }
 if ($betrag !== "" && filter_var($betrag, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]]) === false) {
     $fehler["betrag"] = "Der Betrag muss eine ganze Zahl ab 1 sein.";
@@ -66,17 +84,16 @@ if (count($fehler) > 0) {
 
 // ----- 3. Speichern mit Prepared Statement (schützt vor SQL-Injection) -----
 try {
-    $pdo = verbindeDatenbank();
     $stmt = $pdo->prepare("
-        INSERT INTO anfragen (firmenname, ansprechperson, email, branche, paket, nachricht, betrag, datenschutz)
-        VALUES (:firmenname, :ansprechperson, :email, :branche, :paket, :nachricht, :betrag, :datenschutz)
+        INSERT INTO anfragen (firmenname, ansprechperson, email, branche, paket_id, nachricht, betrag, datenschutz)
+        VALUES (:firmenname, :ansprechperson, :email, :branche, :paket_id, :nachricht, :betrag, :datenschutz)
     ");
     $stmt->execute([
         ":firmenname"     => $firmenname,
         ":ansprechperson" => $ansprechperson,
         ":email"          => $email,
         ":branche"        => $branche,
-        ":paket"          => $paket === "" ? null : $paket,
+        ":paket_id"       => $paketId === "" ? null : $paketId,
         ":nachricht"      => $nachricht === "" ? null : $nachricht,
         ":betrag"         => $betrag === "" ? null : (int) $betrag,
         ":datenschutz"    => $datenschutz

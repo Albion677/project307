@@ -70,7 +70,7 @@ const betragFeld = document.getElementById("betrag");
 // Markiert die Karte des gewählten Pakets
 function paketMarkieren(wert) {
   document.querySelectorAll(".paket").forEach(function (karte) {
-    karte.classList.toggle("gewaehlt", karte.querySelector(".paket-waehlen").dataset.paket === wert);
+    karte.classList.toggle("gewaehlt", karte.querySelector(".paket-waehlen").dataset.dbId === wert);
   });
 }
 
@@ -78,16 +78,16 @@ document.querySelectorAll(".paket").forEach(function (karte) {
   karte.addEventListener("click", function () {
     const knopf = karte.querySelector(".paket-waehlen");
     const preis = karte.querySelector(".preis").textContent; // z.B. "500 CHF"
-    paketAuswahl.value = knopf.dataset.paket;                 // z.B. "silber"
+    paketAuswahl.value = knopf.dataset.dbId;                 // z.B. "2" (id aus der Tabelle pakete)
     betragFeld.value = parseInt(preis);
-    paketMarkieren(knopf.dataset.paket);
+    paketMarkieren(knopf.dataset.dbId);
     document.getElementById("anfrage").scrollIntoView({ behavior: "smooth" });
   });
 });
 
 // Wenn das Paket direkt im Formular geändert wird: Betrag und Karte anpassen
 paketAuswahl.addEventListener("change", function () {
-  const knopf = document.querySelector('.paket-waehlen[data-paket="' + paketAuswahl.value + '"]');
+  const knopf = document.querySelector('.paket-waehlen[data-db-id="' + paketAuswahl.value + '"]');
   if (knopf) {
     betragFeld.value = parseInt(knopf.closest(".paket").querySelector(".preis").textContent);
   }

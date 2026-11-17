@@ -49,7 +49,7 @@
             <li>Ihr Logo auf unserer Website</li>
             <li>Erwähnung an unseren Junioren-Turnieren</li>
           </ul>
-          <button type="button" class="paket-waehlen" data-paket="junioren">Auswählen</button>
+          <button type="button" class="paket-waehlen" data-db-id="1">Auswählen</button>
         </div>
         <div class="paket">
           <h3>Banden-Partner</h3>
@@ -58,7 +58,7 @@
             <li>Werbebande am Spielfeld</li>
             <li>Logo auf der Website</li>
           </ul>
-          <button type="button" class="paket-waehlen" data-paket="bande">Auswählen</button>
+          <button type="button" class="paket-waehlen" data-db-id="2">Auswählen</button>
         </div>
         <div class="paket">
           <h3>Trikot-Partner</h3>
@@ -67,7 +67,7 @@
             <li>Logo auf den Trikots der 1. Mannschaft</li>
             <li>Bande und Logo auf der Website</li>
           </ul>
-          <button type="button" class="paket-waehlen" data-paket="trikot">Auswählen</button>
+          <button type="button" class="paket-waehlen" data-db-id="3">Auswählen</button>
         </div>
       </div>
     </section>
@@ -110,11 +110,11 @@
         </select>
 
         <label for="paket">Paket</label>
-        <select id="paket" name="paket">
+        <select id="paket" name="paket_id">
           <option value="">– kein Paket / eigener Betrag –</option>
-          <option value="junioren">Junioren-Partner (200 CHF)</option>
-          <option value="bande">Banden-Partner (500 CHF)</option>
-          <option value="trikot">Trikot-Partner (1000 CHF)</option>
+          <option value="1">Junioren-Partner (200 CHF)</option>
+          <option value="2">Banden-Partner (500 CHF)</option>
+          <option value="3">Trikot-Partner (1000 CHF)</option>
         </select>
 
         <label for="nachricht">Nachricht</label>

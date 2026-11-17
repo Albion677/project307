@@ -2,7 +2,7 @@
 // ===== Datenbank-Verbindung (PDO + SQLite) =====
 // Wird von anfrage.php mit require eingebunden.
 
-function db(): PDO
+function verbindeDatenbank(): PDO
 {
     $pdo = new PDO("sqlite:" . __DIR__ . "/anfragen.db");
 

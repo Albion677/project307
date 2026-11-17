@@ -35,11 +35,11 @@ formular.addEventListener("submit", async function (event) {
 
     if (antwort.ok) {
       // 201: gespeichert
-      zeigeMeldung("✓ " + daten.message, "erfolg");
+      zeigeMeldung("✓ " + daten.meldung, "erfolg");
       formular.reset();
     } else {
       // 422 (Eingabefehler) oder 500 (Serverfehler)
-      zeigeMeldung("✗ " + daten.message, "fehler");
+      zeigeMeldung("✗ " + daten.meldung, "fehler");
       if (daten.fehler) {
         Object.keys(daten.fehler).forEach(function (name) {
           const feld = formular.elements[name];

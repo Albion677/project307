@@ -16,7 +16,7 @@ function antwort(int $status, array $daten): void
 
 // Nur POST erlauben
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    antwort(405, ["ok" => false, "message" => "Nur POST ist erlaubt."]);
+    antwort(405, ["ok" => false, "meldung" => "Nur POST ist erlaubt."]);
 }
 
 // ----- 1. Daten lesen (trim entfernt Leerzeichen am Rand) -----
@@ -55,14 +55,14 @@ if (count($fehler) > 0) {
     // 422 = Daten sind unvollständig oder ungültig
     antwort(422, [
         "ok"      => false,
-        "message" => "Bitte die markierten Felder korrigieren.",
+        "meldung" => "Bitte die markierten Felder korrigieren.",
         "fehler"  => $fehler
     ]);
 }
 
 // ----- 3. Speichern mit Prepared Statement (schützt vor SQL-Injection) -----
 try {
-    $pdo = db();
+    $pdo = verbindeDatenbank();
     $stmt = $pdo->prepare("
         INSERT INTO anfragen (firmenname, ansprechperson, email, branche, nachricht, betrag, datenschutz)
         VALUES (:firmenname, :ansprechperson, :email, :branche, :nachricht, :betrag, :datenschutz)
@@ -80,11 +80,11 @@ try {
     // 201 = neuer Datensatz wurde erstellt
     antwort(201, [
         "ok"      => true,
-        "message" => "Danke, " . $firmenname . "! Ihre Sponsoring-Anfrage wurde gespeichert.",
+        "meldung" => "Danke, " . $firmenname . "! Ihre Sponsoring-Anfrage wurde gespeichert.",
         "id"      => (int) $pdo->lastInsertId()
     ]);
 } catch (PDOException $e) {
     // 500 = Fehler auf dem Server (Details nicht an den Browser geben)
     error_log($e->getMessage());
-    antwort(500, ["ok" => false, "message" => "Serverfehler: Die Anfrage konnte nicht gespeichert werden."]);
+    antwort(500, ["ok" => false, "meldung" => "Serverfehler: Die Anfrage konnte nicht gespeichert werden."]);
 }

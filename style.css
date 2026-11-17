@@ -1,8 +1,8 @@
 /* ===== Farben ===== */
 :root {
-  --farbe: #1f3b63;        /* Vereinsfarbe Dunkelblau */
-  --farbe-dunkel: #152a47;
-  --farbe-hell: #e9eef5;
+  --farbe: #a3161f;        /* Vereinsfarbe Dunkelrot */
+  --farbe-dunkel: #6e0f15;
+  --farbe-hell: #f8eaeb;
   --text: #222;
   --grau: #6b6b6b;
   --hintergrund: #f5f6f8;
@@ -68,7 +68,7 @@ nav a:hover {
 header {
   /* Spielfeld als Hintergrund, mit Vereinsfarbe abgedunkelt */
   background:
-    linear-gradient(rgba(21, 42, 71, 0.9), rgba(21, 42, 71, 0.9)),
+    linear-gradient(rgba(110, 15, 21, 0.9), rgba(110, 15, 21, 0.9)),
     url("bilder/spielfeld.svg") center / cover no-repeat;
   color: white;
   text-align: center;
@@ -166,7 +166,7 @@ h2 {
 
 .paket {
   position: relative;
-  border: 2px solid #dde2ea;
+  border: 2px solid #e8dfe0;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -217,7 +217,7 @@ h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 2px dashed #c5cfdc;
+  border: 2px dashed #dcc7c9;
   border-radius: 10px;
   font-weight: 600;
   color: var(--grau);
@@ -242,7 +242,7 @@ textarea {
   width: 100%;
   padding: 12px;
   margin-top: 6px;
-  border: 2px solid #d3d9e2;
+  border: 2px solid #e0d6d7;
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
@@ -253,7 +253,7 @@ textarea {
 input:hover,
 select:hover,
 textarea:hover {
-  border-color: #a9b8cc;
+  border-color: #d9a9ac;
 }
 
 input:focus,
@@ -262,7 +262,7 @@ textarea:focus {
   outline: none;
   border-color: var(--farbe);
   background: white;
-  box-shadow: 0 0 0 4px rgba(31, 59, 99, 0.15);
+  box-shadow: 0 0 0 4px rgba(163, 22, 31, 0.15);
 }
 
 /* Ungültige Pflichtfelder rot markieren (erst nachdem man etwas eingegeben hat) */
@@ -334,7 +334,7 @@ button:hover {
 /* ===== Footer ===== */
 footer {
   background: var(--farbe-dunkel);
-  color: #d5dde8;
+  color: #f1dcdd;
   text-align: center;
   padding: 30px 16px;
 }
@@ -425,7 +425,7 @@ footer .klein { font-size: 0.8rem; opacity: 0.7; margin-top: 12px; }
   background: var(--farbe-hell);
 }
 
-footer a { color: #d5dde8; }
+footer a { color: #f1dcdd; }
 
 @keyframes einblenden {
   from { opacity: 0; }
@@ -458,7 +458,7 @@ footer a { color: #d5dde8; }
 
 .paket.gewaehlt {
   border-color: var(--farbe);
-  box-shadow: 0 0 0 4px rgba(31, 59, 99, 0.25);
+  box-shadow: 0 0 0 4px rgba(163, 22, 31, 0.25);
 }
 
 .paket-waehlen {

@@ -1,11 +1,11 @@
 /* ===== Farben ===== */
 :root {
-  --gruen: #1b7a3e;
-  --gruen-dunkel: #125c2c;
-  --gruen-hell: #e6f4ea;
+  --farbe: #1f3b63;        /* Vereinsfarbe Dunkelblau */
+  --farbe-dunkel: #152a47;
+  --farbe-hell: #e9eef5;
   --text: #222;
   --grau: #6b6b6b;
-  --hintergrund: #eef2ef;
+  --hintergrund: #f5f6f8;
 }
 
 * { box-sizing: border-box; }
@@ -39,7 +39,7 @@ nav {
 .logo {
   font-weight: bold;
   font-size: 1.2rem;
-  color: var(--gruen);
+  color: var(--farbe);
 }
 
 nav ul {
@@ -60,27 +60,27 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--gruen);
-  border-color: var(--gruen);
+  color: var(--farbe);
+  border-color: var(--farbe);
 }
 
 /* ===== Header-Banner ===== */
 header {
-  /* Spielfeld-Bild mit halbtransparentem grünem Overlay, damit die Schrift lesbar bleibt */
+  /* Spielfeld als Hintergrund, mit Vereinsfarbe abgedunkelt */
   background:
-    linear-gradient(135deg, rgba(27, 122, 62, 0.85), rgba(18, 92, 44, 0.92)),
+    linear-gradient(rgba(21, 42, 71, 0.9), rgba(21, 42, 71, 0.9)),
     url("bilder/spielfeld.svg") center / cover no-repeat;
   color: white;
   text-align: center;
   padding: 80px 20px 100px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-bottom: 6px solid white;
 }
 
 header h1 {
   margin: 0;
   font-size: 2.6rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 header p {
@@ -94,15 +94,13 @@ header p {
   margin-top: 20px;
   padding: 12px 28px;
   background: white;
-  color: var(--gruen);
+  color: var(--farbe);
   font-weight: bold;
   text-decoration: none;
   border-radius: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
+  transition: background 0.2s;
 }
 
-.cta:hover { transform: scale(1.05); }
 
 /* ===== Inhalt ===== */
 main {
@@ -117,18 +115,14 @@ section {
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+
 }
 
-section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-}
 
 h2 {
   margin-top: 0;
-  color: var(--gruen);
-  border-left: 5px solid var(--gruen);
+  color: var(--farbe);
+  border-left: 5px solid var(--farbe);
   padding-left: 12px;
 }
 
@@ -146,7 +140,7 @@ h2 {
 }
 
 .fakt {
-  background: var(--gruen-hell);
+  background: var(--farbe-hell);
   border-radius: 10px;
   padding: 16px 8px;
   text-align: center;
@@ -155,7 +149,7 @@ h2 {
 .fakt strong {
   display: block;
   font-size: 2rem;
-  color: var(--gruen);
+  color: var(--farbe);
 }
 
 .fakt span {
@@ -172,27 +166,26 @@ h2 {
 
 .paket {
   position: relative;
-  border: 2px solid #e0e6e2;
+  border: 2px solid #dde2ea;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
-  border-top-width: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-top: 6px solid var(--farbe);
+  transition: border-color 0.2s;
 }
 
 .paket { cursor: pointer; }
 
-.paket:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-}
+/* Hover: nur Rahmen in Vereinsfarbe, keine Animation */
+.paket:hover { border-color: var(--farbe); }
+
 
 .paket h3 { margin: 0; font-size: 1.4rem; }
 
 .preis {
   font-size: 1.6rem;
   font-weight: bold;
-  color: var(--gruen);
+  color: var(--farbe);
   margin: 8px 0;
 }
 
@@ -204,26 +197,12 @@ h2 {
 }
 
 .paket li::before {
-  content: "✓ ";
-  color: var(--gruen);
+  content: "– ";
+  color: var(--farbe);
   font-weight: bold;
 }
 
-.bronze { border-top-color: #cd7f32; }
-.silber { border-top-color: #b0b0b0; }
-.gold   { border-top-color: #e6b800; background: #fffbea; }
 
-.badge {
-  position: absolute;
-  top: -14px;
-  right: 14px;
-  background: #e6b800;
-  color: white;
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding: 3px 10px;
-  border-radius: 20px;
-}
 
 /* ===== Sponsoren ===== */
 .sponsoren {
@@ -238,7 +217,7 @@ h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 2px dashed #c8d3cc;
+  border: 2px dashed #c5cfdc;
   border-radius: 10px;
   font-weight: 600;
   color: var(--grau);
@@ -246,8 +225,8 @@ h2 {
 }
 
 .sponsor:hover {
-  border-color: var(--gruen);
-  color: var(--gruen);
+  border-color: var(--farbe);
+  color: var(--farbe);
 }
 
 /* ===== Formular ===== */
@@ -263,27 +242,27 @@ textarea {
   width: 100%;
   padding: 12px;
   margin-top: 6px;
-  border: 2px solid #d5dbd7;
+  border: 2px solid #d3d9e2;
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
-  background: #fafcfb;
+  background: #fbfcfd;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:hover,
 select:hover,
 textarea:hover {
-  border-color: #a9c7b3;
+  border-color: #a9b8cc;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--gruen);
+  border-color: var(--farbe);
   background: white;
-  box-shadow: 0 0 0 4px rgba(27, 122, 62, 0.15);
+  box-shadow: 0 0 0 4px rgba(31, 59, 99, 0.15);
 }
 
 /* Ungültige Pflichtfelder rot markieren (erst nachdem man etwas eingegeben hat) */
@@ -300,7 +279,7 @@ textarea { resize: vertical; }
   align-items: center;
   gap: 10px;
   font-weight: normal;
-  background: var(--gruen-hell);
+  background: var(--farbe-hell);
   padding: 12px;
   border-radius: 8px;
 }
@@ -309,7 +288,7 @@ textarea { resize: vertical; }
   width: 20px;
   height: 20px;
   margin: 0;
-  accent-color: var(--gruen);
+  accent-color: var(--farbe);
 }
 
 /* ===== Button ===== */
@@ -317,25 +296,21 @@ button {
   width: 100%;
   margin-top: 24px;
   padding: 14px;
-  background: var(--gruen);
+  background: var(--farbe);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 0;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(27, 122, 62, 0.3);
-  transition: background 0.2s, transform 0.1s;
+  transition: background 0.2s;
 }
 
 button:hover {
-  background: var(--gruen-dunkel);
+  background: var(--farbe-dunkel);
 }
 
-button:active {
-  transform: scale(0.98);
-}
 
 /* ===== Erfolgs- und Fehlermeldungen ===== */
 .meldung {
@@ -358,8 +333,8 @@ button:active {
 
 /* ===== Footer ===== */
 footer {
-  background: #1f2a24;
-  color: #cfd8d2;
+  background: var(--farbe-dunkel);
+  color: #d5dde8;
   text-align: center;
   padding: 30px 16px;
 }
@@ -415,7 +390,7 @@ footer .klein { font-size: 0.8rem; opacity: 0.7; margin-top: 12px; }
   animation: hochfahren 0.4s ease;
 }
 
-.cookie-box h3 { margin: 0 0 8px; color: var(--gruen); }
+.cookie-box h3 { margin: 0 0 8px; color: var(--farbe); }
 .cookie-box p  { margin: 0; color: var(--grau); }
 
 .cookie-einstellungen {
@@ -441,16 +416,16 @@ footer .klein { font-size: 0.8rem; opacity: 0.7; margin-top: 12px; }
 
 .btn-hell {
   background: white;
-  color: var(--gruen);
-  border: 2px solid var(--gruen);
+  color: var(--farbe);
+  border: 2px solid var(--farbe);
   box-shadow: none;
 }
 
 .btn-hell:hover {
-  background: var(--gruen-hell);
+  background: var(--farbe-hell);
 }
 
-footer a { color: #cfd8d2; }
+footer a { color: #d5dde8; }
 
 @keyframes einblenden {
   from { opacity: 0; }
@@ -480,24 +455,19 @@ footer a { color: #cfd8d2; }
 
 .paket ul { flex: 1; }   /* Button immer unten in der Karte */
 
-.paket:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
-  border-color: var(--gruen);
-}
 
 .paket.gewaehlt {
-  border-color: var(--gruen);
-  box-shadow: 0 0 0 4px rgba(27, 122, 62, 0.25);
+  border-color: var(--farbe);
+  box-shadow: 0 0 0 4px rgba(31, 59, 99, 0.25);
 }
 
 .paket-waehlen {
   margin-top: 16px;
   padding: 10px 16px;
-  border: 2px solid var(--gruen);
+  border: 2px solid var(--farbe);
   border-radius: 30px;
   background: white;
-  color: var(--gruen);
+  color: var(--farbe);
   font-family: inherit;
   font-weight: bold;
   font-size: 1rem;
@@ -508,6 +478,43 @@ footer a { color: #cfd8d2; }
 .paket:hover .paket-waehlen,
 .paket.gewaehlt .paket-waehlen,
 .paket-waehlen:focus-visible {
-  background: var(--gruen);
+  background: var(--farbe);
   color: white;
+}
+
+/* ===== Logo mit Vereinswappen ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.wappen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--farbe);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 3px solid var(--farbe-hell);
+}
+
+.untertitel {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem !important;
+  opacity: 0.8;
+}
+
+.cta:hover { background: var(--farbe-hell); }
+
+.preis small {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--grau);
 }

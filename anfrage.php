@@ -45,7 +45,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 if (!in_array($branche, $erlaubteBranchen, true)) {
     $fehler["branche"] = "Bitte eine Branche auswählen.";
 }
-if (!in_array($paket, ["", "bronze", "silber", "gold"], true)) {
+if (!in_array($paket, ["", "junioren", "bande", "trikot"], true)) {
     $fehler["paket"] = "Bitte ein gültiges Paket wählen.";
 }
 if ($betrag !== "" && filter_var($betrag, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]]) === false) {

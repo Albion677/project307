@@ -35,11 +35,11 @@ formular.addEventListener("submit", async function (event) {
 
     if (antwort.ok) {
       // 201: gespeichert
-      zeigeMeldung("✓ " + daten.meldung, "erfolg");
+      zeigeMeldung(daten.meldung, "erfolg");
       formular.reset();
     } else {
       // 422 (Eingabefehler) oder 500 (Serverfehler)
-      zeigeMeldung("✗ " + daten.meldung, "fehler");
+      zeigeMeldung(daten.meldung, "fehler");
       if (daten.fehler) {
         Object.keys(daten.fehler).forEach(function (name) {
           const feld = formular.elements[name];
@@ -49,7 +49,7 @@ formular.addEventListener("submit", async function (event) {
     }
   } catch (fehler) {
     // Netzwerkfehler oder keine gültige JSON-Antwort
-    zeigeMeldung("✗ Die Anfrage konnte nicht gesendet werden. Bitte später erneut versuchen.", "fehler");
+    zeigeMeldung("Die Anfrage konnte nicht gesendet werden. Bitte später erneut versuchen.", "fehler");
   } finally {
     button.disabled = false;
     button.textContent = "Absenden";
@@ -58,7 +58,7 @@ formular.addEventListener("submit", async function (event) {
 
 // Wenn ein Pflichtfeld fehlt: rote Fehlermeldung zeigen
 formular.addEventListener("invalid", function () {
-  meldung.textContent = "✗ Fehler: Bitte alle Pflichtfelder (*) korrekt ausfüllen.";
+  meldung.textContent = "Bitte alle Pflichtfelder (*) korrekt ausfüllen.";
   meldung.className = "meldung fehler";
   meldung.hidden = false;
 }, true);

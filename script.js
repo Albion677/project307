@@ -1,27 +1,59 @@
-// ===== Formular "absenden" (nur Demo, es wird nichts wirklich gesendet) =====
+// ===== Formular per fetch an anfrage.php senden =====
+// Datenfluss: Formular -> FormData -> fetch POST -> anfrage.php -> db.php -> INSERT -> JSON -> Meldung
 const formular = document.querySelector("form");
 const meldung = document.getElementById("meldung");
-const button = formular.querySelector("button");
+const button = formular.querySelector("button[type=submit]");
 
-formular.addEventListener("submit", function (event) {
-  event.preventDefault(); // Seite nicht neu laden / nichts senden
+// Meldung anzeigen (textContent statt innerHTML: kein HTML aus der Antwort ausführen)
+function zeigeMeldung(text, art) {
+  meldung.textContent = text;
+  meldung.className = "meldung " + art;
+  meldung.hidden = false;
+  meldung.scrollIntoView({ behavior: "smooth", block: "center" });
+}
 
-  // Button kurz auf "Wird gesendet..." stellen
-  button.disabled = true;
+// Alle Felder wieder als gültig markieren
+function fehlerZuruecksetzen() {
+  formular.querySelectorAll("[aria-invalid]").forEach(function (feld) {
+    feld.removeAttribute("aria-invalid");
+  });
+}
+
+formular.addEventListener("submit", async function (event) {
+  event.preventDefault(); // Seite nicht neu laden, wir senden selbst
+
+  fehlerZuruecksetzen();
+  button.disabled = true; // Doppeltes Absenden verhindern
   button.textContent = "Wird gesendet...";
 
-  setTimeout(function () {
-    const firma = document.getElementById("firmenname").value;
+  try {
+    const antwort = await fetch(formular.action, {
+      method: "POST",
+      body: new FormData(formular)
+    });
+    const daten = await antwort.json();
 
-    meldung.textContent = "✓ Danke, " + firma + "! Ihre Sponsoring-Anfrage wurde erfolgreich gesendet.";
-    meldung.className = "meldung erfolg";
-    meldung.hidden = false;
-    meldung.scrollIntoView({ behavior: "smooth", block: "center" });
-
-    formular.reset();
+    if (antwort.ok) {
+      // 201: gespeichert
+      zeigeMeldung("✓ " + daten.message, "erfolg");
+      formular.reset();
+    } else {
+      // 422 (Eingabefehler) oder 500 (Serverfehler)
+      zeigeMeldung("✗ " + daten.message, "fehler");
+      if (daten.fehler) {
+        Object.keys(daten.fehler).forEach(function (name) {
+          const feld = formular.elements[name];
+          if (feld) feld.setAttribute("aria-invalid", "true");
+        });
+      }
+    }
+  } catch (fehler) {
+    // Netzwerkfehler oder keine gültige JSON-Antwort
+    zeigeMeldung("✗ Die Anfrage konnte nicht gesendet werden. Bitte später erneut versuchen.", "fehler");
+  } finally {
     button.disabled = false;
     button.textContent = "Absenden";
-  }, 1000);
+  }
 });
 
 // Wenn ein Pflichtfeld fehlt: rote Fehlermeldung zeigen

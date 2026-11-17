@@ -1,3 +1,5 @@
 config.php
 .env
 .vscode
+.DS_Store
+anfragen.db

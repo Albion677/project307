@@ -462,3 +462,9 @@ footer a { color: #cfd8d2; }
 @media (max-width: 600px) {
   .cookie-buttons { flex-direction: column; }
 }
+
+/* Vom Server als fehlerhaft gemeldete Felder */
+[aria-invalid="true"] {
+  border-color: #c0392b;
+  outline: 2px solid #c0392b;
+}

@@ -48,6 +48,7 @@
             <li>Logo auf der Website</li>
             <li>Dank auf Social Media</li>
           </ul>
+          <button type="button" class="paket-waehlen" data-paket="bronze">Bronze wählen</button>
         </div>
         <div class="paket silber">
           <h3>Silber</h3>
@@ -56,6 +57,7 @@
             <li>Alles aus Bronze</li>
             <li>Banner am Spielfeld</li>
           </ul>
+          <button type="button" class="paket-waehlen" data-paket="silber">Silber wählen</button>
         </div>
         <div class="paket gold">
           <span class="badge">Beliebt</span>
@@ -65,6 +67,7 @@
             <li>Alles aus Silber</li>
             <li>Logo auf dem Trikot</li>
           </ul>
+          <button type="button" class="paket-waehlen" data-paket="gold">Gold wählen</button>
         </div>
       </div>
     </section>
@@ -104,6 +107,14 @@
           <option value="handwerk">Handwerk</option>
           <option value="it">IT</option>
           <option value="andere">Andere</option>
+        </select>
+
+        <label for="paket">Paket</label>
+        <select id="paket" name="paket">
+          <option value="">– kein Paket / eigener Betrag –</option>
+          <option value="bronze">Bronze (200 CHF)</option>
+          <option value="silber">Silber (500 CHF)</option>
+          <option value="gold">Gold (1000 CHF)</option>
         </select>
 
         <label for="nachricht">Nachricht</label>

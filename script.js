@@ -63,13 +63,40 @@ formular.addEventListener("invalid", function () {
   meldung.hidden = false;
 }, true);
 
-// ===== Klick auf ein Paket: Betrag im Formular eintragen =====
-document.querySelectorAll(".paket").forEach(function (paket) {
-  paket.addEventListener("click", function () {
-    const preis = paket.querySelector(".preis").textContent; // z.B. "500 CHF"
-    document.getElementById("betrag").value = parseInt(preis);
+// ===== Paket wählen: Paket und Betrag im Formular eintragen =====
+const paketAuswahl = document.getElementById("paket");
+const betragFeld = document.getElementById("betrag");
+
+// Markiert die Karte des gewählten Pakets
+function paketMarkieren(wert) {
+  document.querySelectorAll(".paket").forEach(function (karte) {
+    karte.classList.toggle("gewaehlt", karte.querySelector(".paket-waehlen").dataset.paket === wert);
+  });
+}
+
+document.querySelectorAll(".paket").forEach(function (karte) {
+  karte.addEventListener("click", function () {
+    const knopf = karte.querySelector(".paket-waehlen");
+    const preis = karte.querySelector(".preis").textContent; // z.B. "500 CHF"
+    paketAuswahl.value = knopf.dataset.paket;                 // z.B. "silber"
+    betragFeld.value = parseInt(preis);
+    paketMarkieren(knopf.dataset.paket);
     document.getElementById("anfrage").scrollIntoView({ behavior: "smooth" });
   });
+});
+
+// Wenn das Paket direkt im Formular geändert wird: Betrag und Karte anpassen
+paketAuswahl.addEventListener("change", function () {
+  const knopf = document.querySelector('.paket-waehlen[data-paket="' + paketAuswahl.value + '"]');
+  if (knopf) {
+    betragFeld.value = parseInt(knopf.closest(".paket").querySelector(".preis").textContent);
+  }
+  paketMarkieren(paketAuswahl.value);
+});
+
+// Nach dem Zurücksetzen des Formulars keine Karte mehr markieren
+formular.addEventListener("reset", function () {
+  paketMarkieren("");
 });
 
 // ===== Cookie-Banner =====

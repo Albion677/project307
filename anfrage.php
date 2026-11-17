@@ -24,6 +24,7 @@ $firmenname     = trim($_POST["firmenname"] ?? "");
 $ansprechperson = trim($_POST["ansprechperson"] ?? "");
 $email          = trim($_POST["email"] ?? "");
 $branche        = trim($_POST["branche"] ?? "");
+$paket          = trim($_POST["paket"] ?? "");
 $nachricht      = trim($_POST["nachricht"] ?? "");
 $betrag         = trim($_POST["betrag"] ?? "");
 $datenschutz    = isset($_POST["datenschutz"]) ? 1 : 0;
@@ -43,6 +44,9 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 if (!in_array($branche, $erlaubteBranchen, true)) {
     $fehler["branche"] = "Bitte eine Branche auswählen.";
+}
+if (!in_array($paket, ["", "bronze", "silber", "gold"], true)) {
+    $fehler["paket"] = "Bitte ein gültiges Paket wählen.";
 }
 if ($betrag !== "" && filter_var($betrag, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]]) === false) {
     $fehler["betrag"] = "Der Betrag muss eine ganze Zahl ab 1 sein.";
@@ -64,14 +68,15 @@ if (count($fehler) > 0) {
 try {
     $pdo = verbindeDatenbank();
     $stmt = $pdo->prepare("
-        INSERT INTO anfragen (firmenname, ansprechperson, email, branche, nachricht, betrag, datenschutz)
-        VALUES (:firmenname, :ansprechperson, :email, :branche, :nachricht, :betrag, :datenschutz)
+        INSERT INTO anfragen (firmenname, ansprechperson, email, branche, paket, nachricht, betrag, datenschutz)
+        VALUES (:firmenname, :ansprechperson, :email, :branche, :paket, :nachricht, :betrag, :datenschutz)
     ");
     $stmt->execute([
         ":firmenname"     => $firmenname,
         ":ansprechperson" => $ansprechperson,
         ":email"          => $email,
         ":branche"        => $branche,
+        ":paket"          => $paket === "" ? null : $paket,
         ":nachricht"      => $nachricht === "" ? null : $nachricht,
         ":betrag"         => $betrag === "" ? null : (int) $betrag,
         ":datenschutz"    => $datenschutz

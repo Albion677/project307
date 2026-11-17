@@ -66,10 +66,13 @@ nav a:hover {
 
 /* ===== Header-Banner ===== */
 header {
-  background: linear-gradient(135deg, var(--gruen), var(--gruen-dunkel));
+  /* Spielfeld-Bild mit halbtransparentem grünem Overlay, damit die Schrift lesbar bleibt */
+  background:
+    linear-gradient(135deg, rgba(27, 122, 62, 0.85), rgba(18, 92, 44, 0.92)),
+    url("bilder/spielfeld.svg") center / cover no-repeat;
   color: white;
   text-align: center;
-  padding: 50px 20px 70px;
+  padding: 80px 20px 100px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -467,4 +470,44 @@ footer a { color: #cfd8d2; }
 [aria-invalid="true"] {
   border-color: #c0392b;
   outline: 2px solid #c0392b;
+}
+
+/* ===== Pakete: Hover, Auswahl und "Wählen"-Button ===== */
+.paket {
+  display: flex;
+  flex-direction: column;
+}
+
+.paket ul { flex: 1; }   /* Button immer unten in der Karte */
+
+.paket:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+  border-color: var(--gruen);
+}
+
+.paket.gewaehlt {
+  border-color: var(--gruen);
+  box-shadow: 0 0 0 4px rgba(27, 122, 62, 0.25);
+}
+
+.paket-waehlen {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border: 2px solid var(--gruen);
+  border-radius: 30px;
+  background: white;
+  color: var(--gruen);
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.paket:hover .paket-waehlen,
+.paket.gewaehlt .paket-waehlen,
+.paket-waehlen:focus-visible {
+  background: var(--gruen);
+  color: white;
 }

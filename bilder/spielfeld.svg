@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice">
+  <!-- Rasen mit gemähten Streifen -->
+  <rect width="1600" height="600" fill="#2e8b4a"/>
+  <g fill="#38a057">
+    <rect x="0" width="100" height="600"/><rect x="200" width="100" height="600"/>
+    <rect x="400" width="100" height="600"/><rect x="600" width="100" height="600"/>
+    <rect x="800" width="100" height="600"/><rect x="1000" width="100" height="600"/>
+    <rect x="1200" width="100" height="600"/><rect x="1400" width="100" height="600"/>
+  </g>
+  <!-- Spielfeldlinien -->
+  <g fill="none" stroke="#ffffff" stroke-width="6" opacity="0.85">
+    <rect x="40" y="40" width="1520" height="520"/>
+    <line x1="800" y1="40" x2="800" y2="560"/>
+    <circle cx="800" cy="300" r="110"/>
+    <rect x="40" y="150" width="220" height="300"/>
+    <rect x="40" y="225" width="80" height="150"/>
+    <path d="M260 230 A 95 95 0 0 1 260 370"/>
+    <rect x="1340" y="150" width="220" height="300"/>
+    <rect x="1480" y="225" width="80" height="150"/>
+    <path d="M1340 230 A 95 95 0 0 0 1340 370"/>
+  </g>
+  <g fill="#ffffff" opacity="0.85">
+    <circle cx="800" cy="300" r="8"/><circle cx="190" cy="300" r="6"/><circle cx="1410" cy="300" r="6"/>
+  </g>
+</svg>

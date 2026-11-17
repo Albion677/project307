@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS anfragen (
     email           TEXT    NOT NULL,                  -- Pflichtfeld
     branche         TEXT    NOT NULL,                  -- Pflichtfeld
     nachricht       TEXT,                              -- freiwillig
+    paket           TEXT,                              -- bronze, silber, gold oder leer
     betrag          INTEGER,                           -- in CHF, freiwillig
     datenschutz     INTEGER NOT NULL,                  -- 1 = akzeptiert
     erstellt_am     TEXT    DEFAULT CURRENT_TIMESTAMP  -- Datum/Zeit der Anfrage

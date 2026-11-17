@@ -165,17 +165,15 @@ h2 {
 }
 
 .paket {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   border: 2px solid #e8dfe0;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.paket { cursor: pointer; }
-
-/* Hover: Karte hebt sich leicht an */
 .paket:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
@@ -224,13 +222,8 @@ h2 {
   border-radius: 10px;
   font-weight: 600;
   color: var(--grau);
-  transition: border-color 0.2s, color 0.2s;
 }
 
-.sponsor:hover {
-  border-color: var(--farbe);
-  color: var(--farbe);
-}
 
 /* ===== Formular ===== */
 label {
@@ -450,19 +443,7 @@ footer a { color: #f1dcdd; }
   outline: 2px solid #c0392b;
 }
 
-/* ===== Pakete: Hover, Auswahl und "Wählen"-Button ===== */
-.paket {
-  display: flex;
-  flex-direction: column;
-}
-
-.paket ul { flex: 1; }   /* Button immer unten in der Karte */
-
-
-.paket.gewaehlt {
-  border-color: var(--farbe);
-  box-shadow: 0 0 0 4px rgba(163, 22, 31, 0.25);
-}
+.paket ul { flex: 1; }
 
 .paket-waehlen {
   margin-top: 16px;
@@ -478,9 +459,7 @@ footer a { color: #f1dcdd; }
   transition: background 0.2s, color 0.2s;
 }
 
-.paket:hover .paket-waehlen,
-.paket.gewaehlt .paket-waehlen,
-.paket-waehlen:focus-visible {
+.paket-waehlen:hover {
   background: var(--farbe);
   color: white;
 }
@@ -510,7 +489,7 @@ footer a { color: #f1dcdd; }
 .untertitel {
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 0.85rem !important;
+  font-size: 0.85rem;
   opacity: 0.8;
 }
 

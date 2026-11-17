@@ -49,7 +49,7 @@
             <li>Ihr Logo auf unserer Website</li>
             <li>Erwähnung an unseren Junioren-Turnieren</li>
           </ul>
-          <button type="button" class="paket-waehlen" data-db-id="1">Auswählen</button>
+          <button type="button" class="paket-waehlen" data-db-id="1" data-preis="200">Auswählen</button>
         </div>
         <div class="paket">
           <h3>Banden-Partner</h3>
@@ -58,7 +58,7 @@
             <li>Werbebande am Spielfeld</li>
             <li>Logo auf der Website</li>
           </ul>
-          <button type="button" class="paket-waehlen" data-db-id="2">Auswählen</button>
+          <button type="button" class="paket-waehlen" data-db-id="2" data-preis="500">Auswählen</button>
         </div>
         <div class="paket">
           <h3>Trikot-Partner</h3>
@@ -67,7 +67,7 @@
             <li>Logo auf den Trikots der 1. Mannschaft</li>
             <li>Bande und Logo auf der Website</li>
           </ul>
-          <button type="button" class="paket-waehlen" data-db-id="3">Auswählen</button>
+          <button type="button" class="paket-waehlen" data-db-id="3" data-preis="1000">Auswählen</button>
         </div>
       </div>
     </section>
@@ -89,7 +89,7 @@
       <!-- Bereich für Erfolgs- und Fehlermeldungen -->
       <div id="meldung" class="meldung" role="alert" hidden></div>
 
-      <form action="anfrage.php" method="post">
+      <form id="anfrage-form" action="anfrage.php" method="post">
         <label for="firmenname">Firmenname *</label>
         <input type="text" id="firmenname" name="firmenname" required>
 

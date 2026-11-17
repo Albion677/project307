@@ -170,7 +170,6 @@ h2 {
   border-radius: 12px;
   padding: 20px;
   text-align: center;
-  border-top: 6px solid var(--farbe);
   transition: border-color 0.2s;
 }
 

@@ -7,6 +7,8 @@ function zeigeMeldung(text, art) {
   meldung.textContent = text;
   meldung.className = 'meldung ' + art;
   meldung.hidden = false;
+  // Meldung ins Bild holen, auch auf dem Handy
+  meldung.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // Gleiche Regeln und Texte wie in anfrage.php (Feldname -> Text).
@@ -47,8 +49,6 @@ function zeigeFehler(fehler, titel = 'Bitte prüfe deine Angaben:') {
     markiere(feld);
   }
   meldung.append(liste);
-  // auf dem Handy liegt die Meldung sonst ausserhalb vom Bildschirm
-  meldung.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function markiere(feld) {

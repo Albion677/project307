@@ -557,3 +557,6 @@ button:disabled {
   nav ul { gap: 8px; font-size: 0.85rem; }
   .fakt strong { font-size: 1.6rem; }
 }
+
+/* Meldung unter dem Button */
+#meldung { margin-top: 16px; }

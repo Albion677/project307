@@ -86,9 +86,6 @@
       <h2>Sponsoring Anfrage</h2>
       <p class="hinweis">Felder mit <span class="pflicht">*</span> sind Pflicht.</p>
 
-      <!-- Bereich für Erfolgs- und Fehlermeldungen -->
-      <div id="meldung" class="meldung" role="alert" hidden></div>
-
       <!-- novalidate: keine Browser-Blasen, script.js zeigt eigene Meldungen -->
       <form id="anfrage-form" action="anfrage.php" method="post" novalidate>
         <label for="firmenname">Firmenname <span class="pflicht" aria-hidden="true">*</span></label>
@@ -132,6 +129,9 @@
         </label>
 
         <button type="submit">Anfrage absenden</button>
+
+        <!-- Erfolgs- und Fehlermeldungen direkt unter dem Button -->
+        <div id="meldung" class="meldung" role="alert" hidden></div>
       </form>
     </section>
   </main>

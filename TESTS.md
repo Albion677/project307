@@ -8,13 +8,13 @@ Server: `php -S localhost:8000` (mit pdo_sqlite und mbstring)
 
 | Nr | Testfall | Erwartet | Status |
 |----|----------|----------|--------|
-| 1 | alles leer absenden | 5 Fehler als Liste, 5 Felder rot, kein Request | OK |
+| 1 | alles leer absenden | 5 Fehler als Liste unter dem Button, 5 Felder rot, kein Request | OK |
 | 2 | E-Mail `lea@` | Browser meldet E-Mail, kein Request | OK |
 | 3 | E-Mail `a@b` | Browser lässt durch, PHP lehnt ab (422), E-Mail rot | OK |
 | 4 | Betrag `1.5` | Fehler beim Betrag, kein Request | OK |
 | 5 | Datenschutz nicht angehakt | Datenschutz-Zeile rot, kein Request | OK |
 | 6 | markiertes Feld korrigieren | rot verschwindet sofort | OK (nach Fix) |
-| 7 | gültige Anfrage | grüne Meldung, Formular leer, Button zeigt kurz „Wird gesendet ...“ und ist gesperrt | OK |
+| 7 | gültige Anfrage | grüne Meldung direkt unter dem Button und im Bild, Formular leer, Button zeigt kurz „Wird gesendet ...“ und ist gesperrt | OK |
 | 8 | nur Tastatur (Tab, Pfeiltasten, Leertaste, Enter) | bis zur grünen Meldung, Fokus immer sichtbar | OK |
 
 ## Direkt an PHP mit curl (Browser-Prüfung umgangen)
@@ -56,7 +56,7 @@ sqlite3 anfragen.db "SELECT firmenname, ansprechperson, length(firmenname) FROM 
 
 | Nr | Testfall | Erwartet | Status |
 |----|----------|----------|--------|
-| 23 | 375 px, ganz unten leer absenden | Fehlerliste rutscht ins Bild, Felder rot | OK |
+| 23 | 375 px, ganz unten leer absenden | Fehlerliste unter dem Button ist im Bild, Felder rot | OK |
 | 24 | 320 px | kein seitliches Scrollen | OK |
 | 25 | 375 px, Paket über die Liste wählen | passende Karte wird hervorgehoben, Betrag wird eingetragen | OK |
 | 26 | Paket über die Karte wählen | Liste zeigt das gleiche Paket | OK |

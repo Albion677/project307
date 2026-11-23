@@ -1,12 +1,13 @@
 <?php
 require __DIR__ . '/db.php';
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 
 function antwort($status, $daten)
 {
     http_response_code($status);
-    echo json_encode($daten);
+    // Umlaute als ä statt ä ausgeben
+    echo json_encode($daten, JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -21,20 +22,28 @@ $datenschutz    = isset($_POST['datenschutz']) ? 1 : 0;
 
 $fehler = [];
 
+// mb_strlen zählt Zeichen, strlen würde Bytes zählen (ä = 2 Bytes)
 if ($firmenname === '') {
     $fehler['firmenname'] = 'Bitte gib einen Firmennamen ein.';
+} elseif (mb_strlen($firmenname) > 100) {
+    $fehler['firmenname'] = 'Der Firmenname darf höchstens 100 Zeichen haben.';
 }
 if ($ansprechperson === '') {
     $fehler['ansprechperson'] = 'Bitte gib eine Ansprechperson ein.';
+} elseif (mb_strlen($ansprechperson) > 100) {
+    $fehler['ansprechperson'] = 'Die Ansprechperson darf höchstens 100 Zeichen haben.';
 }
-if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-    $fehler['email'] = 'Bitte gib eine gültige Mail ein.';
+if (!filter_var($mail, FILTER_VALIDATE_EMAIL) || mb_strlen($mail) > 254) {
+    $fehler['email'] = 'Bitte gib eine gültige E-Mail-Adresse ein.';
 }
-if (!in_array($branche, ['gastro', 'handel', 'handwerk', 'it', 'andere'])) {
+if (!in_array($branche, ['gastro', 'handel', 'handwerk', 'it', 'andere'], true)) {
     $fehler['branche'] = 'Bitte wähle eine Branche.';
 }
+if (mb_strlen($nachricht) > 1000) {
+    $fehler['nachricht'] = 'Die Nachricht darf höchstens 1000 Zeichen haben.';
+}
 if ($betrag !== '' && !filter_var($betrag, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]])) {
-    $fehler['betrag'] = 'Der Betrag muss eine ganze Zahl sein.';
+    $fehler['betrag'] = 'Der Betrag muss eine ganze Zahl ab 1 sein.';
 }
 if ($datenschutz !== 1) {
     $fehler['datenschutz'] = 'Bitte akzeptiere den Datenschutz.';
@@ -47,8 +56,8 @@ try {
     if ($paketId !== '') {
         $stmt = $pdo->prepare('SELECT COUNT(*) FROM pakete WHERE id = :id');
         $stmt->execute([':id' => (int) $paketId]);
-        if ($stmt->fetchColumn() == 0) {
-            $fehler['paket_id'] = 'Bitte wähle ein gültiges Paket.';
+        if (!ctype_digit($paketId) || $stmt->fetchColumn() == 0) {
+            $fehler['paket_id'] = 'Dieses Paket kennen wir nicht.';
         }
     }
 

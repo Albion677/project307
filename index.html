@@ -84,22 +84,23 @@
 
     <section id="anfrage">
       <h2>Sponsoring Anfrage</h2>
-      <p class="hinweis">Felder mit * sind Pflichtfelder.</p>
+      <p class="hinweis">Felder mit <span class="pflicht">*</span> sind Pflicht.</p>
 
       <!-- Bereich für Erfolgs- und Fehlermeldungen -->
       <div id="meldung" class="meldung" role="alert" hidden></div>
 
-      <form id="anfrage-form" action="anfrage.php" method="post">
-        <label for="firmenname">Firmenname *</label>
-        <input type="text" id="firmenname" name="firmenname" required>
+      <!-- novalidate: keine Browser-Blasen, script.js zeigt eigene Meldungen -->
+      <form id="anfrage-form" action="anfrage.php" method="post" novalidate>
+        <label for="firmenname">Firmenname <span class="pflicht" aria-hidden="true">*</span></label>
+        <input type="text" id="firmenname" name="firmenname" maxlength="100" required>
 
-        <label for="ansprechperson">Ansprechperson *</label>
-        <input type="text" id="ansprechperson" name="ansprechperson" required>
+        <label for="ansprechperson">Ansprechperson <span class="pflicht" aria-hidden="true">*</span></label>
+        <input type="text" id="ansprechperson" name="ansprechperson" maxlength="100" required>
 
-        <label for="email">E-Mail *</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email">E-Mail <span class="pflicht" aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" maxlength="254" required>
 
-        <label for="branche">Branche *</label>
+        <label for="branche">Branche <span class="pflicht" aria-hidden="true">*</span></label>
         <select id="branche" name="branche" required>
           <option value="">– bitte wählen –</option>
           <option value="gastro">Gastronomie</option>
@@ -110,6 +111,7 @@
         </select>
 
         <label for="paket">Paket</label>
+        <p class="hinweis">Oben bei den Karten oder hier in der Liste wählen.</p>
         <select id="paket" name="paket_id">
           <option value="">– kein Paket / eigener Betrag –</option>
           <option value="1">Junioren-Partner (200 CHF)</option>
@@ -118,17 +120,18 @@
         </select>
 
         <label for="nachricht">Nachricht</label>
-        <textarea id="nachricht" name="nachricht" rows="4"></textarea>
+        <textarea id="nachricht" name="nachricht" rows="4" maxlength="1000"></textarea>
 
         <label for="betrag">Betrag (CHF)</label>
-        <input type="number" id="betrag" name="betrag" min="1">
+        <p class="hinweis">Nur ganze Franken, zum Beispiel 300.</p>
+        <input type="number" id="betrag" name="betrag" min="1" step="1" inputmode="numeric">
 
         <label class="check">
           <input type="checkbox" id="datenschutz" name="datenschutz" required>
-          Datenschutz akzeptieren *
+          Datenschutz akzeptieren <span class="pflicht" aria-hidden="true">*</span>
         </label>
 
-        <button type="submit">Absenden</button>
+        <button type="submit">Anfrage absenden</button>
       </form>
     </section>
   </main>

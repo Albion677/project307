@@ -500,3 +500,60 @@ footer a { color: #f1dcdd; }
   font-weight: normal;
   color: var(--grau);
 }
+
+/* ===== Zuverlässig & mobil ===== */
+
+/* Pflicht-Sternchen */
+.pflicht {
+  color: var(--farbe);
+  font-weight: bold;
+}
+
+/* Hinweis direkt unter einem Label */
+form .hinweis {
+  margin: 2px 0 0;
+}
+
+/* Fehlerliste in der Meldung */
+.meldung ul {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  font-weight: normal;
+}
+
+/* Datenschutz-Zeile rot, wenn nicht angehakt */
+.check[aria-invalid="true"] {
+  outline: 2px solid #c0392b;
+  background: #fbe3e4;
+}
+
+/* Sichtbarer Fokus, wenn man mit der Tastatur bedient */
+button:focus-visible,
+a:focus-visible,
+.check input:focus-visible {
+  outline: 3px solid var(--farbe-dunkel);
+  outline-offset: 2px;
+}
+
+/* Button während des Sendens */
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Gewähltes Paket hervorheben */
+.paket.gewaehlt {
+  border-color: var(--farbe);
+  background: var(--farbe-hell);
+}
+
+.paket.gewaehlt .paket-waehlen {
+  background: var(--farbe);
+  color: white;
+}
+
+/* Sehr schmale Handys (320 px) */
+@media (max-width: 360px) {
+  nav ul { gap: 8px; font-size: 0.85rem; }
+  .fakt strong { font-size: 1.6rem; }
+}
